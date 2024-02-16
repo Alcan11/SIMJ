@@ -11,9 +11,9 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/holidays', function () {
-//     return view('holidays');
-// });
+Route::get('/holydays', function () {
+    return view('holydays');
+})->middleware(['auth', 'verified'])->name('holydays');
 
 Route::get('/users', function () {
     return view('users');
