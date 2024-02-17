@@ -3,7 +3,8 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 
 import 'js-year-calendar';
-import '../js-year-calendar/dist/js-year-calendar.css';
+
+import 'sweetalert2';
 
 window.Alpine = Alpine;
 
