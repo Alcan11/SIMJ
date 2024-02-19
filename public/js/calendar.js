@@ -18,6 +18,9 @@ document.querySelector('.calendar').addEventListener('clickDay', function(e) {
         `,
         showCancelButton: true,
         confirmButtonText: "Guardar",
+        confirmButtonColor: '#28a745',
+        cancelButtonText: "Cerrar",
+        cancelButtonColor: '#dc3545',
         showLoaderOnConfirm: true,
         preConfirm: async (login) => {
           try {
