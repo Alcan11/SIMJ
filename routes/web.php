@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DatesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +19,8 @@ Route::get('/holydays', function () {
 Route::get('/users', function () {
     return view('users');
 })->middleware(['auth', 'verified'])->name('users');
+
+Route::post('/guardar-datos', [DatesController::class, 'guardar'])->name('guardar-datos');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
