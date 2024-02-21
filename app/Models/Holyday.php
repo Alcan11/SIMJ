@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Date extends Model
+class Holyday extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'color', 
-        'festive', 
-        'year'
+        'day',
+        'month', 
+        'year',
+        'recurring'
     ];
 }
