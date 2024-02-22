@@ -7,6 +7,12 @@ use App\Models\Holyday;
 
 class HolydaysController extends Controller
 {
+    public function index()
+    {
+        $holydays = Holyday::all();
+        return view('holydays', compact('holydays'));
+    }
+
     public function save(Request $request)
     {
         Holyday::create([

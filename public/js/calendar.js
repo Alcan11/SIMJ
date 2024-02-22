@@ -1,4 +1,13 @@
-new Calendar('.calendar');
+setData();
+
+new Calendar('.calendar', {
+  style:'background',
+    	startYear: currentYear,
+    	language: 'es',
+    	minDate:new Date(currentYear,0,1),
+    	maxDate:new Date(currentYear,11,31),
+    	dataSource:dataSource
+});
 
 document.querySelector('.calendar').addEventListener('clickDay', function (e) {
   var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -31,7 +40,7 @@ document.querySelector('.calendar').addEventListener('clickDay', function (e) {
         const name = $('#dateName').val();
         const color = $('#dateColor').val();
         const day = date.getDate();
-        const month = date.getMonth()+1;
+        const month = date.getMonth();
         const year = date.getFullYear() ;
         const recurring = $('#recurring').val();
 
@@ -60,14 +69,30 @@ document.querySelector('.calendar').addEventListener('clickDay', function (e) {
       }
     },
     allowOutsideClick: () => !Swal.isLoading()
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire("Día guardado");
-    }
   });
 
 });
 
-// $('.calendar').CalendarContextMenuItem(){
+function setData() {
+  const dataSource = [];
 
-// }
+  fetch('/holidays')
+      .then(response => response.json())
+      .then(data => {
+          data.forEach((holiday, index) => {
+              const holidayData = {
+                  id: index,
+                  name: holiday.name,
+                  location: holiday.location,
+                  startDate: new Date(holiday.year, holiday.month, holiday.day),
+                  endDate: new Date(holiday.year, holiday.month, holiday.day)
+              };
+              dataSource.push(holidayData);
+          });
+      })
+      .catch(error => {
+          console.error('Error al obtener los días festivos:', error);
+      });
+  console.log(dataSource);
+};
+ 
